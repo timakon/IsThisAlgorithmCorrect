@@ -10,3 +10,22 @@
    1. `docker load --input nazvanie_arhiva.tar`
 7. Запустить docker-compose
    1. `docker-compose up`
+8. Сделать миграцию
+   1. `docker exec -it apiserver /bin/bash -c "python manage.py makemigrations"`
+   2. `docker exec -it apiserver /bin/bash -c "python manage.py migrate"`
+   3. ```
+      docker exec -it apiserver /bin/bash
+        python manage.py shell --command="
+        from manager.models import Manager
+        m = Manager.objects.create(email=\"admin@mail.com\", role=\"admin\")
+        m.set_password(\"admin123123\")
+        m.save()"
+      ```
+9. Сделать коды уведомлений
+   1. ```
+      docker exec -it apiserver /bin/bash
+        python manage.py shell --command=" 
+        from manager.models import NotificationCode
+        NotificationCode.default()"
+      ```
+      
