@@ -9,4 +9,4 @@
 6. Разархивировать архивы
    1. `docker load --input nazvanie_arhiva.tar`
 7. Запустить docker-compose
-   1. `docker-compose up —build`
+   1. `docker-compose up`
